@@ -73,3 +73,11 @@ window.addEventListener('mousemove', (evt) => {
 window.addEventListener('mouseup', (evt) => {
     posIndex = null;
 });
+
+
+//reset button
+const rst = document.getElementById('resetButton');
+rst.addEventListener('click', () => {
+    initCircle();
+    drawCircle();
+});
