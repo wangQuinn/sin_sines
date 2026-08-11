@@ -5,7 +5,7 @@ const CX = 200, CY = 200, R = 120;
 
 
 let N = 10; //number of points on the circle
-let harmonics = N;
+let harmonics = N/2;
 let points = [];
 let playing = true;
 
@@ -15,6 +15,16 @@ harmonicsSlider.min = 1; harmonicsSlider.max = N; harmonicsSlider.value = N/2;
 harmonicsSlider.addEventListener('input', () => {
     harmonics = parseInt(harmonicsSlider.value);
     document.getElementById('hVal').innerHTML = harmonics;
+});
+const nSlider = document.getElementById('nSlider');
+nSlider.min = 1; nSlider.max = 20; nSlider.value = nSlider.max/2;
+nSlider.addEventListener('input', () => {
+    N = parseInt(nSlider.value);
+    document.getElementById('nVal').innerHTML = N;
+    initCircle();
+    trace = []; // clear
+    harmonicsSlider.max = N; harmonicsSlider.value = N/2;
+    recompute();
 });
 //reset button
 const rst = document.getElementById('resetButton');
@@ -61,7 +71,7 @@ function computeFourier(){
         const freq = k <= n/2 ? k : k-n; //negative frequencies. 
         coeffs.push({freq, re, im});
     }
-    coeffs.sort((a,b) => Math.abs(b.freq) - Math.abs(a.freq)); //sort by frequency
+    coeffs.sort((a,b) => Math.abs(a.freq) - Math.abs(b.freq)); //sort by frequency
     console.log(coeffs);
     return coeffs;
 }
