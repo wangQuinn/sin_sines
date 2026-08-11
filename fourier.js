@@ -23,7 +23,9 @@ nSlider.addEventListener('input', () => {
     document.getElementById('nVal').innerHTML = N;
     initCircle();
     trace = []; // clear
-    harmonicsSlider.max = N; harmonicsSlider.value = N/2;
+    harmonicsSlider.max = N; harmonicsSlider.value = N;
+    harmonics = N;
+    document.getElementById('hVal').innerHTML = harmonics;
     recompute();
 });
 //reset button
@@ -31,6 +33,7 @@ const rst = document.getElementById('resetButton');
 rst.addEventListener('click', () => {
     initCircle();
     drawCircle();
+    recompute();
 });
 //pause button
 document.getElementById('pauseButton').addEventListener('click', (e) => {
